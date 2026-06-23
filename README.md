@@ -43,12 +43,8 @@ smart-spam-detection-app/
 ├── templates/
 │   └── index.html
 │
-├── static/
-│   └── style.css
-│
-├── spam.tsv 
-│
-└── train_model.py 
+└── static/
+    └── style.css
 ---
 
 ## ⚙️ Installation & Setup
