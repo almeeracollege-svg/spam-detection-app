@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import joblib
+import os
 
 app = Flask(__name__)
 
@@ -17,14 +18,35 @@ def home():
 def predict():
     message = request.form["message"]
 
-    # Convert text into TF-IDF features
+    # Transform input message
     data = vectorizer.transform([message])
 
-    # Predict
-    prediction = model.predict(data)[0]
+    # Get spam probability
+    probability = model.predict_proba(data)[0][1]
 
-    # Convert prediction to text
-    result = "Spam" if prediction == 1 else "Not Spam"
+    # Spam keywords
+    spam_keywords = [
+        "win",
+        "winner",
+        "money",
+        "prize",
+        "free",
+        "claim",
+        "click",
+        "offer",
+        "congratulations",
+        "lottery",
+        "reward",
+        "urgent",
+        "selected",
+        "cash"
+    ]
+
+    # Hybrid detection
+    if probability > 0.40 or any(word in message.lower() for word in spam_keywords):
+        result = "Spam"
+    else:
+        result = "Not Spam"
 
     return render_template(
         "index.html",
@@ -32,9 +54,6 @@ def predict():
         user_message=message
     )
 
-
-if __name__ == "__main__":
-    import os
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
