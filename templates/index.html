@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Spam Detector</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>🛡️ Smart Spam Detector</h1>
+
+        <p class="subtitle">
+            Detect spam messages instantly using Machine Learning & NLP
+        </p>
+
+        <form action="/predict" method="POST">
+
+            <textarea
+                name="message"
+                placeholder="Enter your SMS message here..."
+                required></textarea>
+
+            <button type="submit">
+                Analyze Message
+            </button>
+
+        </form>
+
+        {% if prediction %}
+
+            <div class="result-card">
+
+                {% if prediction == "Spam" %}
+
+                    <div class="spam">
+                        🚨 SPAM DETECTED
+                    </div>
+
+                {% else %}
+
+                    <div class="safe">
+                        ✅ SAFE MESSAGE
+                    </div>
+
+                {% endif %}
+
+                <p class="prediction-text">
+                    Result: <strong>{{ prediction }}</strong>
+                </p>
+
+            </div>
+
+        {% endif %}
+
+        <div class="stats">
+
+            <div class="stat-box">
+                <h3>97.94%</h3>
+                <p>Accuracy</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>5572+</h3>
+                <p>Messages</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>NLP</h3>
+                <p>Powered</p>
+            </div>
+
+        </div>
+
+        <footer>
+            Built with Flask • Scikit-learn • Machine Learning
+        </footer>
+
+    </div>
+
+</body>
+</html>
