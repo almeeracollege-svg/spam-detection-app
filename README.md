@@ -5,9 +5,8 @@ A Machine Learning-powered web application that detects whether a message is **S
 ---
 
 ## 🚀 Live Demo
-*(Add your deployed link here after Render deployment)*  
-https://your-app-name.onrender.com
 
+https://spam-detection-app-qydv.onrender.com
 ---
 
 ## 📌 Project Overview
@@ -51,5 +50,5 @@ smart-spam-detection-app/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/smart-spam-detection-app.git
+git clone https://github.com/almeeracollege-svg/spam-detection-app.git
 cd smart-spam-detection-app
